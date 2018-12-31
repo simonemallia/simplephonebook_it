@@ -26,9 +26,12 @@ public class Main {
 		
 		
 		if (scelta.equalsIgnoreCase("1")) {
-			System.out.println("Aggiungi il nome del tuo contatto seguito dal numero di telefono");
+			System.out.println("Inserisci il nome e cognome del tuo contatto:");
+			String n = tastiera.nextLine();
+			System.out.println("Inserisci il numero di telefono del tuo contatto:");
+			String t = tastiera.nextLine();
 			
-			x.membri.add(new Contatto(tastiera.nextLine(), tastiera.nextLine()));
+			x.membri.add(new Contatto(n,t));
 			
 			x.salvataggio();
 			
