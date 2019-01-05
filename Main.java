@@ -5,78 +5,77 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		FileManager x = new FileManager ();
+		FileManager run = new FileManager ();
 		Scanner tastiera = new Scanner (System.in);
 		
-		System.out.println("Benvenuto in Rubrica v.0.01a");
+		System.out.println("Benvenuto in Rubrica v.0.02a");
 		
-		while(true) { 
+		while (true) {
+		
 		System.out.println("Seleziona cosa vuoi fare");
 		System.out.println("1- Aggiungi contatto");
 		System.out.println("2- Visualizza tutti i contatti");
 		System.out.println("3- Cerca il tuo contatto");
+		System.out.println("4- Elimina contatto");
+		System.out.println("5- Credits");
+		System.out.println("6- Chiudi l'applicazione");
+		
 		
 		String scelta = tastiera.nextLine();
 		
-		while (!scelta.equalsIgnoreCase("1") && !scelta.equalsIgnoreCase("2") && !scelta.equalsIgnoreCase("3")) {
-			System.out.println("Input non valido. Ritenta");
-			scelta = tastiera.nextLine();
+		switch (scelta) {
+		case "1":
+			run.salvataggio();
+			System.out.println("Vuoi ritornare al menù? (Y/N)");
+			if (tastiera.nextLine().equalsIgnoreCase("Y")) {
+				continue;
+			}else {
+				System.out.println("Termino il programma...");
+				System.exit(0);
+			}
+			
+			break;
+		case "2":
+			run.lettura();
+			System.out.println("Vuoi ritornare al menù? (Y/N)");
+			if (tastiera.nextLine().equalsIgnoreCase("Y")) {
+				continue;
+			}else {
+				System.out.println("Termino il programma...");
+				System.exit(0);
+			}
+            break;
+		case "3":
+			run.ricerca();
+			System.out.println("Vuoi ritornare al menù? (Y/N)");
+			if (tastiera.nextLine().equalsIgnoreCase("Y")) {
+				continue;
+			}else {
+				System.out.println("Termino il programma...");
+				System.exit(0);
+			}
+			break;
+		case "4":
+			run.elimina();
+			System.out.println("Vuoi ritornare al menù? (Y/N)");
+			if (tastiera.nextLine().equalsIgnoreCase("Y")) {
+				continue;
+			}else {
+				System.out.println("Termino il programma...");
+				System.exit(0);
+			}
+			break;
+		case "5":
+			System.out.println("This application was written by Simone Mallia. Thanks for using my application! :)");
 			continue;
-		}
-		
-		
-		if (scelta.equalsIgnoreCase("1")) {
-			System.out.println("Inserisci il nome e cognome del tuo contatto:");
-			String n = tastiera.nextLine();
-			System.out.println("Inserisci il numero di telefono del tuo contatto:");
-			String t = tastiera.nextLine();
-			
-			x.membri.add(new Contatto(n,t));
-			
-			x.salvataggio();
-			
-			System.out.println("Contatto salvato con successo!");
-			System.out.println("Vuoi ritornare al menù? (Y/N)");
-			scelta = tastiera.nextLine();
-			if (scelta.equalsIgnoreCase("Y")) {
+		default:
+				System.out.println("Input non riconosciuto. Ritenta");
 				continue;
-			}
-			else {
-				System.out.println("Termino il programma...");
-				System.exit(0);
-			}
-			
-		}
-		else if (scelta.equalsIgnoreCase("2")) {
-			x.lettura();
-			System.out.println("Vuoi ritornare al menù? (Y/N)");
-			scelta = tastiera.nextLine();
-			if (scelta.equalsIgnoreCase("Y")) {
-				continue;
-			}
-			else {
-				System.out.println("Termino il programma...");
-				System.exit(0);
-			}
-		}
-		else if (scelta.equalsIgnoreCase("3")) {
-			x.ricerca();
-			System.out.println("Vuoi ritornare al menù? (Y/N)");
-			scelta = tastiera.nextLine();
-			if (scelta.equalsIgnoreCase("Y")) {
-				continue;
-			}
-			else {
-				System.out.println("Termino il programma...");
-				System.exit(0);
-			}
 		}
 		
-		
-		
 		}
-
+		
 	}
+	
 
 }
-
