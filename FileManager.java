@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,11 +23,22 @@ public class FileManager {
 		FileWriter fw = new FileWriter (file, true);
 		BufferedWriter bw = new BufferedWriter (fw);
 		
+		System.out.println("Inserisci il nome e cognome del tuo contatto:");
+		String n = input.nextLine();
+		System.out.println("Inserisci il numero di telefono del tuo contatto:");
+		String t = input.nextLine();
+		
+		membri.add(new Contatto(n,t));
+		
 		for (int i = 0; i < membri.size(); i++) {
 			String str = membri.get(i).nome + " - " + membri.get(i).telefono + " \n";
 			bw.append(str);
 		}
 		bw.close();
+		membri.clear();
+		
+		System.out.println("Contatto salvato con successo!");
+	
 	
 	
 		
@@ -64,7 +74,7 @@ public class FileManager {
 		
 		for (int i = 0; i <= membri2.size(); i++) {
 			
-			if (membri2.get(i).nome.equalsIgnoreCase(tastiera)) {
+			if (membri2.get(i).nome.contains(tastiera)) {
 			System.out.println(membri2.get(i).nome + " - " + membri2.get(i).telefono);
 			break;
 			
@@ -85,8 +95,36 @@ public class FileManager {
 	    }
 	}
 	
-	
+	public void elimina() throws IOException {
+		System.out.println("Scrivi il nome del contatto che vuoi eliminare:");
+		String elimino = input.nextLine();
+		FileReader fr = new FileReader (file);
+		BufferedReader br = new BufferedReader (fr);
+		ArrayList <Contatto> membri3 = new ArrayList <Contatto>();
+		for (String line = br.readLine(); line != null; line = br.readLine()) {
+			if (line.contains(elimino)) {
+				System.out.println("Contatto eliminato con successo!");
+				continue;
+			}
+			String [] sep = line.split(" - ");
+			Contatto persona = new Contatto (sep[0], sep[1]);
+			membri3.add(persona);
+	        }
+		
+		br.close();
+		
+		FileWriter fw = new FileWriter (file);
+		BufferedWriter bw = new BufferedWriter (fw);
+		
+		for (int i = 0; i < membri3.size(); i++) {
+			String str = membri3.get(i).nome + " - " + membri3.get(i).telefono + " \n";
+			bw.append(str);
+		}
+		bw.close();
+		
+		
+		
+	}
 	
 	
 }
-
